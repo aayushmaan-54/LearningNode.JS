@@ -1,0 +1,18 @@
+TIME STAMP      IP   METHOD  Req. PATH
+1722788809163 : ::1 - GET : /users 
+1722788828183 : ::1 - GET : /api/users 
+1722788833709 : ::1 - GET : /api/user/1 
+1722788878349 : ::1 - DELETE : /api/user 
+1722788886351 : ::1 - POST : /api/user 
+1722788929570 : ::1 - POST : /api/user 
+1722788950964 : ::1 - POST : /api/user 
+1722789010578 : ::1 - POST : /api/user 
+1722789050087 : ::1 - PATCH : /api/user/1001 
+1722789097253 : ::1 - DELETE : /api/user/1001 
+1722883824233 : ::1 - GET : / 
+1722883825735 : ::1 - GET : /users 
+1722883899855 : ::1 - GET : /api/users 
+1722883925960 : ::1 - GET : /api/user/45 
+1722883996969 : ::1 - POST : /api/user 
+1722884092806 : ::1 - PATCH : /api/user/1001 
+1722884127105 : ::1 - DELETE : /api/user/1001 
