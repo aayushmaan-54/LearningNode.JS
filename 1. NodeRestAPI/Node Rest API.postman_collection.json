@@ -186,7 +186,7 @@
 			"response": []
 		},
 		{
-			"name": "New Request",
+			"name": "deletingUser",
 			"request": {
 				"method": "DELETE",
 				"header": [],
