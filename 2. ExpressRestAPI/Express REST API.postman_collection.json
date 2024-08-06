@@ -48,7 +48,7 @@
 			"response": []
 		},
 		{
-			"name": "New Request",
+			"name": "postSpecificUser",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -93,7 +93,7 @@
 			"response": []
 		},
 		{
-			"name": "New Request",
+			"name": "patchingSpecificUser",
 			"request": {
 				"method": "PATCH",
 				"header": [],
@@ -124,7 +124,7 @@
 			"response": []
 		},
 		{
-			"name": "New Request",
+			"name": "deletingUser",
 			"request": {
 				"method": "DELETE",
 				"header": [],
