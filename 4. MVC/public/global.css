@@ -1,0 +1,41 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  width: 100vw;
+  min-height: 100vh;
+}
+
+img {
+  width: 200px;
+  height: 250px;
+  object-fit: cover;
+}
+
+.navContainer {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 20px;
+  list-style: none;
+  background-color: darkseagreen;
+  padding: 10px;
+  margin: 0;
+  font-weight: 600;
+}
+
+li > a {
+  all: unset;
+  cursor: pointer;
+  color: cornsilk;
+  &:hover {
+    color: black;
+    transition: all;
+    transition-duration: 200ms;
+  }
+}
+
+.active {
+  color: black;
+}

@@ -1,0 +1,22 @@
+extends layout/Navlayout.pug
+
+block styles
+  link(rel="stylesheet", href="/shop.css")
+
+block content 
+  main
+    if prods.length > 0
+      .grid
+        each product in prods
+          article.card.product-item
+            header.card-header
+              h1.prooduct-tile #{product.title}
+            .card-img 
+              img(src="https://plus.unsplash.com/premium_photo-1669652639337-c513cc42ead6?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Ym9va3N8ZW58MHx8MHx8fDA%3D", alt="#{product.title}")
+            .card-content
+              h2.product-price  $19.45
+              .product-desc Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore, minus fugit culpa facere reprehenderit hic doloribus
+            .card-btn 
+              button.btn Add to cart
+    else 
+      h1.noProd No Products
