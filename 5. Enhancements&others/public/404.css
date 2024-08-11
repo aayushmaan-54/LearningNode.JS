@@ -1,0 +1,26 @@
+.navContainer {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 20px;
+  list-style: none;
+  background-color: darkseagreen;
+  padding: 10px;
+  margin: 0;
+  font-weight: 600;
+}
+
+li > a {
+  all: unset;
+  cursor: pointer;
+  color: cornsilk;
+  &:hover {
+    color: black;
+    transition: all;
+    transition-duration: 200ms;
+  }
+}
+
+h1 {
+  text-align: center;
+}

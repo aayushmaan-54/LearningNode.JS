@@ -1,0 +1,26 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href="/global.css")
+    block styles 
+    title #{docTitle}
+  body 
+    header 
+        nav.nav
+          ul.navContainer
+            li
+              a(href='/', class=(isShopActive === true ? 'active' : '')) Shop
+            li
+              a(href='/products', class=(isAllProdActive === true ? 'active' : '')) Products
+            li
+              a(href='/cart', class=(isCartActive === true ? 'active' : '')) Cart
+            li
+              a(href='/orders', class=(isOrderActive === true ? 'active' : '')) Orders
+            li 
+              a(href='/admin/add-product', class=(isAdminProdActive === true ? 'active' : '')) Add Product
+            li 
+              a(href='/admin/products', class=(isCheckoutActive === true ? 'active' : '')) Admin Products
+ 
+    block content 

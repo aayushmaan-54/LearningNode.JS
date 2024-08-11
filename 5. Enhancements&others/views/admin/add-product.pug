@@ -1,0 +1,25 @@
+extends ../layout/Navlayout.pug
+
+block styles
+  link(rel="stylesheet", href="/addProd.css")
+
+block content 
+  main 
+      form.product-form(action="/admin/add-product" method="POST") 
+        .form-control 
+          label(for="prodTitle") Title:
+          input(type="text" name="prodTitle" id="prodTitle" required) 
+
+        .form-control 
+          label(for="prodImageUrl") Image URL:
+          input(type="text" name="prodImageUrl" id="prodImageUrl" required) 
+
+        .form-control 
+          label(for="prodPrice") Price:
+          input(type="number" name="prodPrice" id="prodPrice" step="0.01" required) 
+
+        .form-control 
+          label(for="prodDescription") Description:
+          textarea(name="prodDescription" id="prodDescription" required) 
+
+        button.btn(type="submit") Add Product
