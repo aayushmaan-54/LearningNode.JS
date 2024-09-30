@@ -1,0 +1,151 @@
+{
+	"info": {
+		"_postman_id": "65dd40e1-7da1-437f-b4d1-a0b5afe72a4a",
+		"name": "MongoNodeTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32991184"
+	},
+	"item": [
+		{
+			"name": "Get All Books(II)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/?page=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						""
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Specific Book",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/book/66dde26e484f7d0b28ba4962",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"book",
+						"66dde26e484f7d0b28ba4962"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Specific Book",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"test book\",\r\n    \"author\": \"test author name\",\r\n    \"pageCount\": 450,\r\n    \"genres\": [\r\n      \"genere 1\",\r\n      \"genere 2\"\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/book",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"book"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Specific Book",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/book/66fafad3e5a4434eff989827",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"book",
+						"66fafad3e5a4434eff989827"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Patch Specific Book",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"pageCount\": 450,\r\n    \"availableCopies\": 10\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/book/66dde26e484f7d0b28ba4963",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"book",
+						"66dde26e484f7d0b28ba4963"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Books(I)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
