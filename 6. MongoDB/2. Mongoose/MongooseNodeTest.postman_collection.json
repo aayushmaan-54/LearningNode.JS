@@ -1,0 +1,155 @@
+{
+	"info": {
+		"_postman_id": "6dc71d1f-458b-4b65-a28f-ed9193bc387a",
+		"name": "MongooseNodeTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32991184"
+	},
+	"item": [
+		{
+			"name": "Post a Book",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"To Kill a Mockingbird\",\r\n    \"author\": \"Harper Lee\",\r\n    \"pageCount\": 324,\r\n    \"yearPublished\": 1960,\r\n    \"genres\": [\"Fiction\", \"Classic\"],\r\n    \"publisher\": {\r\n      \"name\": \"J.B. Lippincott & Co.\",\r\n      \"location\": \"Philadelphia\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/book",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"book"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Replace Book",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"publisher\": {\r\n        \"name\": \"George Allen & Unwin\",\r\n        \"location\": \"London\"\r\n    },\r\n    \"_id\": \"66fbfba1288fc12a26a2ed72\",\r\n    \"title\": \"The Lord of the Rings: The Fellowship of the Ring\",\r\n    \"author\": \"J.R.R. Tolkien\",\r\n    \"pageCount\": 423,\r\n    \"yearPublished\": 1954,\r\n    \"genres\": [\r\n        \"Fantasy\",\r\n        \"Adventure\"\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/book/66fbfba1288fc12a26a2ed72",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"book",
+						"66fbfba1288fc12a26a2ed72"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Book",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Specified Book",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/book/66fbfba1288fc12a26a2ed72",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"book",
+						"66fbfba1288fc12a26a2ed72"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Book",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"The Lord of the Rings The Fellowship of the Ring\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/book/66fbfba1288fc12a26a2ed72",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"book",
+						"66fbfba1288fc12a26a2ed72"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Book",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/book/66fbf78206bea75323fe66b7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"book",
+						"66fbf78206bea75323fe66b7"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
