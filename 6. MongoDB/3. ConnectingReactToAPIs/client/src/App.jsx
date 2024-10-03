@@ -6,22 +6,26 @@ import { getTodos } from './utils/api';
 
 function App() {
   const [todoList, setTodoList] = useState([]);
+  const [isTodoComplete, setIsTodoComplete] = useState(false);
+  const [todoEdit, setTodoEdit] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchTodos = async () => {
-    try {
-      const todos = await getTodos();
-      setTodoList(todos);
-      console.log(todos);
-    } catch (error) {
-      console.error("Error fetching todos:", error);
-    }}
+      try {
+        const todos = await getTodos();
+        setTodoList(todos);
+        console.log(todos);
+      } catch (error) {
+        console.error("Error fetching todos:", error);
+      }
+    }
     fetchTodos();
   }, []);
 
   return (
     <>
-      <TodoContext.Provider value={todoList} >
+      <TodoContext.Provider value={{ todoList, setTodoList, isTodoComplete, setIsTodoComplete, todoEdit, setTodoEdit, isLoading, setIsLoading }}>
         <HomePage />
       </TodoContext.Provider>
     </>
