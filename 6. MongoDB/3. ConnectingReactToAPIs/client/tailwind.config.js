@@ -5,7 +5,9 @@
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      display: ['landscape'],
+    },
   },
   plugins: [],
 }
