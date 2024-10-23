@@ -1,14 +1,37 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthLogo, Lock } from '../../assets/SVG';
+import { validateEmail } from '../../redux/features/auth/authService';
+import { useDispatch, useSelector } from 'react-redux';
+import { sendforgotPasswordEmail, RESET } from '../../redux/features/auth/authSlice';
+import Loader from '../../components/Loader';
+
 
 const ForgotPassword = () => {
   const [emailInput, setEmailInput] = useState('');
+  const dispatch = useDispatch();
+  const { isLoading } = useSelector((state) => state.auth);
 
-  const formSubmitHandler = (e) => {
+
+  const formSubmitHandler = async(e) => {
     e.preventDefault();
-    console.log('Submitted email:', emailInput);
+    
+    if(!emailInput) {
+      return toast.error('Enter Email!');
+    }
+
+    if(!validateEmail(emailInput)) {
+      return toast.error('Please Enter a Valid Email!');
+    }
+
+    const userData = { email: emailInput };
+
+    await dispatch(sendforgotPasswordEmail(userData));
+    await dispatch(RESET());
   };
+
+
+  if(isLoading) return <Loader />;
 
   return (
     <>

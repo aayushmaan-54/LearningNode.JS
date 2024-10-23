@@ -1,26 +1,86 @@
-import React, { useState } from 'react';
-import { AuthLogo, Eye, EyeClose, Lock, PasswordResetIcon } from '../../assets/SVG';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { AuthLogo, Eye, EyeClose, PasswordResetIcon } from '../../assets/SVG';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import Loader from '../../components/Loader';
+import { RESET, resetPassword } from '../../redux/features/auth/authSlice';
+import toast from 'react-hot-toast';
+
 
 const ResetPassword = () => {
   const [isPasswordHidden1, setIsPasswordHidden1] = useState(true);
   const [isPasswordHidden2, setIsPasswordHidden2] = useState(true);
+
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  const formSubmitHandler = (e) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { resetToken } = useParams();
+  const { isLoading, message, isSuccess } = useSelector((state) => state.auth);
+
+
+  const formSubmitHandler = async (e) => {
     e.preventDefault();
-    console.log('Submitted password:', password);
-    console.log('Submitted confirm password:', confirmPassword);
+
+    if (!password || !confirmPassword) {
+      return toast.error('Required Field is Missing!');
+    }
+
+    if (!/(?=.*[a-z])(?=.*[A-Z])/.test(password && confirmPassword)) {
+      return toast.error('Password must contain both lowercase and uppercase letters!');
+    }
+
+    if (!/\d/.test((password && confirmPassword))) {
+      return toast.error('Password must contain at least one number!');
+    }
+
+    if (!/[!@#$%^&*(),.?":{}|<>]/.test((password && confirmPassword))) {
+      return toast.error('Password must contain at least one special character!');
+    }
+
+    if ((password.length < 6 && confirmPassword.length < 6)) {
+      return toast.error('Password must be at least 6 characters long!');
+    }
+
+    if (password !== confirmPassword) {
+      return toast.error('Password fields don\'t match!');
+    }
+
+    const userData = {
+      password
+    }
+
+    await dispatch(resetPassword({ 
+      resetPasswordToken: resetToken, 
+      userData: userData 
+    })).unwrap();
+
+    await dispatch(RESET());
   };
+
+
+  useEffect(() => {
+    if (isSuccess && message.includes("Password Reset Successful, please login")) {
+      navigate("/login");
+    }
+
+    dispatch(RESET());
+  }, [dispatch, navigate, message, isSuccess]);
+
 
   const togglePasswordVisibility1 = () => {
     setIsPasswordHidden1((prev) => !prev);
   };
 
+
   const togglePasswordVisibility2 = () => {
     setIsPasswordHidden2((prev) => !prev);
   };
+
+
+
+  if (isLoading) return <Loader />;
 
   return (
     <>

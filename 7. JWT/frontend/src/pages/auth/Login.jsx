@@ -1,8 +1,16 @@
 import React from 'react';
 import LoginCard from '../../components/LoginCard';
 import { AuthLogo } from '../../assets/SVG';
+import { useSelector } from 'react-redux';
+import Loader from '../../components/Loader';
+
 
 const Login = () => {
+  const { isLoading }  = useSelector((state) => state.auth);
+
+  
+  if(isLoading) return <Loader />;
+
   return (
     <div className='min-h-screen w-full bg-white bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]'>
       <div className='flex flex-col items-center pt-5'>

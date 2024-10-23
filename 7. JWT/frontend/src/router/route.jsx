@@ -22,7 +22,7 @@ export const routes = createBrowserRouter([
       { path: "/sign-up", element: <SignUp /> },
       { path: "/forgot-password", element: <ForgotPassword /> },
       { path: "/reset-password/:resetToken", element: <ResetPassword /> },
-      { path: "/login-with-code/:email", element: <CodeLogin /> },
+      { path: "/loginWithCode/:email", element: <CodeLogin /> },
       { path: "/profile", element: <Profile /> },
       { path: "/verify/:verificationToken", element: <VerifyAccount /> },
       { path: "/change-password", element: <ChangePassword /> },

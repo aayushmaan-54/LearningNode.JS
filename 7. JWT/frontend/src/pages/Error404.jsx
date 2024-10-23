@@ -1,6 +1,7 @@
 import React from 'react';
 import '../index.css'
 
+
 const Error404 = () => {
   return (
     <section className='flex items-center justify-center flex-col mt-8'>

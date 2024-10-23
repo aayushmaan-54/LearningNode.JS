@@ -1,6 +1,7 @@
 import React from 'react';
 import '../index.css';
 
+
 const Loader = () => {
   return (
     <aside className='flex items-center justify-center w-screen h-screen fixed inset-0 z-50'>

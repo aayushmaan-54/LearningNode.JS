@@ -1,10 +1,18 @@
 import React, { useState } from 'react';
 import Menu from '../../components/Menu';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Eye, EyeClose, LockPassword } from '../../assets/SVG';
 import Footer from '../../components/Footer';
+import { useDispatch, useSelector } from 'react-redux';
+import useRedirectLoggedOutUser from '../../hooks/useRedirectLoggedOutUser';
+import { changePassword, logout, RESET } from '../../redux/features/auth/authSlice';
+import Loader from '../../components/Loader';
+import toast from 'react-hot-toast';
+
 
 const ChangePassword = () => {
+  useRedirectLoggedOutUser('/login');
+
   const [formData, setFormData] = useState({
     oldPassword: '',
     newPassword1: '',
@@ -17,6 +25,11 @@ const ChangePassword = () => {
     newPassword2: false,
   });
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { isLoading, user } = useSelector((state) => state.auth);
+
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevFormData) => ({
@@ -25,6 +38,7 @@ const ChangePassword = () => {
     }));
   };
 
+
   const togglePasswordVisibility = (field) => {
     setShowPassword((prevShowPassword) => ({
       ...prevShowPassword,
@@ -32,11 +46,49 @@ const ChangePassword = () => {
     }));
   };
 
-  const formHandler = (e) => {
+
+  const formSubmitHandler = async(e) => {
     e.preventDefault();
-    console.log('Form Data: ', formData);
-    // Perform password validation and submission here
+
+    const { oldPassword, newPassword1, newPassword2 } = formData;
+
+    if (!oldPassword || !newPassword1 || !newPassword2) {
+      return toast.error('Required Field is Missing!');
+    }
+
+    if (!/(?=.*[a-z])(?=.*[A-Z])/.test(newPassword1 && newPassword2)) {
+      return toast.error('Password must contain both lowercase and uppercase letters!');
+    }
+
+    if (!/\d/.test((newPassword1 && newPassword2))) {
+      return toast.error('Password must contain at least one number!');
+    }
+
+    if (!/[!@#$%^&*(),.?":{}|<>]/.test((newPassword1 && newPassword2))) {
+      return toast.error('Password must contain at least one special character!');
+    }
+
+    if ((newPassword1.length < 6 && newPassword2.length < 6)) {
+      return toast.error('Password must be at least 6 characters long!');
+    }
+
+    if (newPassword1 !== newPassword2) {
+      return toast.error('Password fields don\'t match!');
+    }
+
+    const userData = {
+      oldPassword,
+      newPassword: newPassword1
+    }
+
+    await dispatch(changePassword(userData));
+    await dispatch(logout());
+    await dispatch(RESET());
+    navigate('/login');
   };
+
+  
+  if(isLoading) return <Loader />;
 
   return (
     <section className='flex items-center justify-center flex-col'>
@@ -44,7 +96,7 @@ const ChangePassword = () => {
 
       <Menu />
 
-      <form onSubmit={formHandler} className='min-h-screen w-full bg-white bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] flex items-start justify-center mt-12'>
+      <form onSubmit={formSubmitHandler} className='min-h-screen w-full bg-white bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] flex items-start justify-center mt-12'>
         <div className='border-black border flex items-center justify-center flex-col bg-opacity-10 backdrop-blur-[2px] w-[90vw] sm:w-[50vw] p-6 lg:w-[500px]'>
           <div className='w-full'>
             <Link to="/" className='underline underline-offset-4 font-black'>&lt; Home</Link>
@@ -100,7 +152,7 @@ const ChangePassword = () => {
                 placeholder='Confirm New Password'
                 className='border border-black focus:outline-none px-2 py-1 w-full'
                 required
-                name='newPassword2'  
+                name='newPassword2'
                 value={formData.newPassword2}
                 onChange={handleInputChange}
               />
