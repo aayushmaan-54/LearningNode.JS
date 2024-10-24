@@ -3,7 +3,12 @@ require('dotenv').config();
 const { ServerApiVersion } = require('mongodb');
 const { default: mongoose } = require('mongoose');
 
-const Mongo_URI = process.env.MONGODB_URI || "mongodb://localhost:27017/auth-app";
+const Mongo_URI = process.env.MongoDB_URI;
+
+if (!Mongo_URI) {
+  console.error('MONGODB_URI is not defined in environment variables');
+  process.exit(1);
+}
 
 const options = {
   serverAPI: {

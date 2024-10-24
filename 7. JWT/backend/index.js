@@ -9,6 +9,8 @@ const app = express();
 const { connectToDatabase } = require('./config/db');
 const userRoutes = require('./router/route');
 
+const PORT = process.env.PORT || 3000;
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -17,6 +19,7 @@ app.use(cors({
   origin: [ 'http://localhost:5173', 'https://authn-app.vercel.app', 'http://localhost:5174' ], credentials: true }));
 
   
+  
 app.use('/api/users', userRoutes);
 
 app.get('/test', (req, res) => {
@@ -24,7 +27,7 @@ app.get('/test', (req, res) => {
 });
 
 
-const PORT = process.env.PORT || 5000;
+
 connectToDatabase().then(() => {
   app.listen(PORT, () =>  {
     console.log(`Server is listening on "http://localhost:${PORT}"`);

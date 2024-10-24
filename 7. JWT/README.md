@@ -1,4 +1,8 @@
 # Full-Stack Authentication - `://AuthN`
+# **[Live Link 🔗](https://authn-app.vercel.app)** 
+
+
+  A simple full-stack to-do application that lets users add, update, delete, and manage tasks efficiently.
 
 ## Key Features
 1. **User Registration and Login** (including Google OAuth 2.0)
@@ -62,7 +66,7 @@
 
 ## Deployment:
 - **Frontend**: Deployed on **Vercel**
-- **Backend**: Deployed on **Render**
+- **Backend**: Deployed on **Vercel**
 
 ## Summary:
 This full-stack authentication application provides a robust foundation for user authentication and management, designed for integration into larger web applications or as a standalone auth service. It leverages modern web technologies and best practices for both frontend and backend development, ensuring a secure and scalable user management system.
